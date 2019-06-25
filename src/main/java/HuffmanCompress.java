@@ -4,6 +4,28 @@ import java.util.Scanner;
 
 public class HuffmanCompress {
     public static void main(String[] args) {
+
+        /*
+
+        Sample Input:
+            Loremipsumdolor
+
+        Sample Output:
+            11 50
+            p: 0100
+            r: 101
+            s: 0111
+            d: 0101
+            e: 0110
+            u: 1110
+            i: 1111
+            L: 1000
+            l: 1001
+            m: 110
+            o: 00
+            10000010101101101111010001111110110010100100100101
+        * */
+
         Scanner s = new Scanner(System.in);
         String in = s.nextLine();
 
@@ -45,59 +67,4 @@ public class HuffmanCompress {
     }
 
 
-}
-
-class Node implements Comparable<Node>{
-    private Node parent;
-    private Node childLeft;
-    private Node childRight;
-    private Character character;
-    private Integer freq;
-    private StringBuilder code;
-
-    public String getCode() {
-        return code.toString();
-    }
-
-    public void setParent(Node parent) {
-        this.parent = parent;
-    }
-
-    public Node getChildLeft() {
-        return childLeft;
-    }
-
-    public Node getChildRight() {
-        return childRight;
-    }
-
-    public Integer getFreq() {
-        return freq;
-    }
-
-    public Node(Character character, Node parent, Node childLeft, Node childRight, Integer freq) {
-        this.parent = parent;
-        this.childLeft = childLeft;
-        this.childRight = childRight;
-        this.character = character;
-        this.freq = freq;
-        this.code = new StringBuilder();
-    }
-
-    public void incFreq(){
-        freq++;
-    }
-
-    public int compareTo(Node o) {
-        return  freq - o.freq;
-    }
-
-    public void computeCode(){
-        if (parent == null) code.append("0");
-        Node current = this;
-        while (current.parent != null) {
-            if (current == current.parent.getChildLeft()) code.insert(0,"0"); else code.insert(0,"1");
-            current = current.parent;
-        }
-    }
 }
